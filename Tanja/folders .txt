@@ -1,0 +1,10 @@
+recouces/views/COMPANIES
+	- edit.blade.php
+	- index.blade.php
+	- show.blade.php
+
+PartnerCompanie.php = Model
+
+route in web.php
+	- Route::resource('companies', 'PartnerCompanieController');
+	
