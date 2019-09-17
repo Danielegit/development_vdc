@@ -1,0 +1,12 @@
+recouces/views/NEWSLETTER
+	- delete.blade.php
+	- index.blade.php
+
+Newsletter.php = Model
+NewsletterController.php = Controller
+
+route in web.php
+	- Route::resource('newsletter', 'NewsletterController');
+
+
+	
