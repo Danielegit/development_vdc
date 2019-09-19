@@ -15,8 +15,8 @@ class LanguageController extends Controller
     public function index()
     {
         
-        // $languages = Language::get();
-        // return $languages;
+        $languages = Language::get();
+        return view('languages/index', compact('languages'));
     }
 
     /**
@@ -26,7 +26,8 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        //
+        $languages = Language::get();
+        return view('languages/create', compact('languages'));
     }
 
     /**
@@ -37,7 +38,11 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Language::create([
+            'language_name' => $request['language_name'],
+        ]);
+
+        return redirect()->route('languages.index');
     }
 
     /**
@@ -80,8 +85,16 @@ class LanguageController extends Controller
      * @param  \App\Language  $language
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Language $language)
+    public function destroy($id)
     {
-        //
+        if(Language::destroy($id)) {
+            
+            return redirect('languages');
+            
+            }else{
+            
+            return redirect('languages');
+        }
+
     }
 }
