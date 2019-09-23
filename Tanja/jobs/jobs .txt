@@ -1,0 +1,18 @@
+recouces/views/JOB
+	- edit.blade.php
+	- index.blade.php
+	- show.blade.php
+	- create.blade.php
+
+Models
+	- Job.php
+	- JobProfile.php
+
+Controllers
+	- JobController.php
+	- JobProfileController.php
+
+
+route in web.php
+	- Route::resource('job', 'JobController');
+	
