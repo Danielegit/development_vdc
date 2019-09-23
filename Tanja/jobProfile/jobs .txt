@@ -1,0 +1,16 @@
+recouces/views/jobProfiles
+	- edit.blade.php
+	- index.blade.php
+	- show.blade.php
+	- create.blade.php
+
+Models	
+	- JobProfile.php
+
+Controllers	
+	- JobProfileController.php
+
+
+route in web.php
+	- Route::resource('jobProfiles', 'JobProfileController');
+	

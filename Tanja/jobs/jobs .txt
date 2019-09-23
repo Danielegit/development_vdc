@@ -4,13 +4,13 @@ recouces/views/JOB
 	- show.blade.php
 	- create.blade.php
 
-Models
+Model
 	- Job.php
-	- JobProfile.php
+	
 
-Controllers
+Controller
 	- JobController.php
-	- JobProfileController.php
+	
 
 
 route in web.php

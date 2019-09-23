@@ -14,7 +14,9 @@ class JobProfileController extends Controller
      */
     public function index()
     {
-        //
+        $profiles = JobProfile::get();
+
+        return view('jobProfiles/index', compact('profiles'));
     }
 
     /**
@@ -24,7 +26,9 @@ class JobProfileController extends Controller
      */
     public function create()
     {
-        //
+        $profiles = JobProfile::get();
+
+        return view('jobProfiles/create', compact('profiles'));
     }
 
     /**
@@ -35,7 +39,12 @@ class JobProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         JobProfile::create([
+            'name' => $request['name'],
+            'importance' => $request['importance'],
+        ]);
+
+         return redirect()->route('jobProfiles.index');
     }
 
     /**
@@ -44,9 +53,11 @@ class JobProfileController extends Controller
      * @param  \App\JobProfile  $jobProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(JobProfile $jobProfile)
+    public function show($profile)
     {
-        //
+        $profile = JobProfile::find($profile);
+
+        return view('jobProfiles.show', compact('profile'));
     }
 
     /**
@@ -55,9 +66,11 @@ class JobProfileController extends Controller
      * @param  \App\JobProfile  $jobProfile
      * @return \Illuminate\Http\Response
      */
-    public function edit(JobProfile $jobProfile)
+    public function edit($profile)
     {
-        //
+        $profile = JobProfile::find($profile);
+
+        return view('jobProfiles/edit', compact('profile'));
     }
 
     /**
@@ -67,9 +80,11 @@ class JobProfileController extends Controller
      * @param  \App\JobProfile  $jobProfile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, JobProfile $jobProfile)
+    public function update(Request $request, $id)
     {
-        //
+        JobProfile::where('id', $id)->update($request->except(['_token','_method']));
+
+        return redirect()->route('jobProfiles.index');
     }
 
     /**
@@ -78,8 +93,12 @@ class JobProfileController extends Controller
      * @param  \App\JobProfile  $jobProfile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JobProfile $jobProfile)
+    public function destroy($id)
     {
-        //
+        if (JobProfile::destroy($id)) {
+            return redirect('jobProfiles');
+        } else {
+            return redirect('jobProfiles');
+        }
     }
 }
