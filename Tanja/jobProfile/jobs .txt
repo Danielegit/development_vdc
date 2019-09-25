@@ -12,5 +12,12 @@ Controllers
 
 
 route in web.php
-	- Route::resource('jobProfiles', 'JobProfileController');
+	- Route::post('pts_attach', 'ProfilesToSkillController@attach')
+		->name('ProfilesToSkill.attach');
+	- Route::post('pts_update', 'ProfilesToSkillController@update')
+		->name('ProfilesToSkill.update');
+	- Route::get('pts_confirm', 'ProfilesToSkillController@detach')
+		->name('ProfilesToSkill.detach');
+	- Route::delete('pts_delete/{id}', 'ProfilesToSkillController@delete')
+		->name('ProfilesToSkill.delete');
 	

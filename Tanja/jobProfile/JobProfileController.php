@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\JobProfile;
+use App\Skill;
 use Illuminate\Http\Request;
 
 class JobProfileController extends Controller
@@ -15,8 +16,9 @@ class JobProfileController extends Controller
     public function index()
     {
         $profiles = JobProfile::get();
+        $skills = Skill::all(['id', 'name']);
 
-        return view('jobProfiles/index', compact('profiles'));
+        return view('jobProfiles/index', compact('profiles', 'skills'));
     }
 
     /**
@@ -27,8 +29,9 @@ class JobProfileController extends Controller
     public function create()
     {
         $profiles = JobProfile::get();
+        $skills = Skill::all(['id', 'name']);
 
-        return view('jobProfiles/create', compact('profiles'));
+        return view('jobProfiles/create', compact('profiles', 'skills'));
     }
 
     /**
@@ -55,9 +58,10 @@ class JobProfileController extends Controller
      */
     public function show($profile)
     {
-        $profile = JobProfile::find($profile);
+        $profiles = JobProfile::find($profile);
+        $skills = Skill::all(['id', 'name']);
 
-        return view('jobProfiles.show', compact('profile'));
+        return view('jobProfiles.show', compact('profiles', 'skills'));
     }
 
     /**
@@ -68,9 +72,10 @@ class JobProfileController extends Controller
      */
     public function edit($profile)
     {
-        $profile = JobProfile::find($profile);
+        $profiles = JobProfile::find($profile);
+        $skills = Skill::all(['id', 'name']);
 
-        return view('jobProfiles/edit', compact('profile'));
+        return view('jobProfiles/edit', compact('profiles', 'skills'));
     }
 
     /**
