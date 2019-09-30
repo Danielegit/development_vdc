@@ -1,4 +1,4 @@
-@extends('layouts.adminPannel')
+@extends('layouts.default')
 @section('content')
 <div class="container-fluid mb-5" style="margin-top: 100px;">
     <div class="row justify-content-center">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
 
-                        <div class="from-group row mb-3">
+                        <div class="from-group row mb-4">
                             <label for="importance" class="col-md-2 col-form-label text-md-right">Importance</label>
                             <div class="col-md-9">
                                 <select name="importance" class="form-control" id="importance">                                   
@@ -46,7 +46,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>                    
+                    </form>                                        
                 </div>
             </div>
         </div>

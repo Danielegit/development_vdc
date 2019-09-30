@@ -9,45 +9,55 @@
             </button></a>
         </div>
         <div class="col-6 my-3 text-right">
-            <a href="{{ route('jobProfiles.create') }}"><button type="submit" class="btn btn-primary text-light">Create New Profile
-            </button></a>
+            <a href="{{ route('jobProfiles.create') }}">
+            	<button type="submit" class="btn btn-primary text-light">Create New Profile
+            	</button>
+            </a>
         </div>
+       	
 		
-		<table class="w-100 table table-striped table-bordered">		
-		<thead>
-			<tr>
-				<th>id</th>
-				<th>Profile Name</th>
-				<th>Importance</th>						
-				<th>Created:</th>	
-				<th>EDIT</th>
-				<th>DELETE</th>				
-			</tr>
-		</thead>
-		<tbody>
-			@foreach ($profiles as $profiles)		
-				<tr>
-					<td>{{ $profiles->id }}</td>
-					<td>{{ $profiles->name }}</td>
-					<td>{{ $profiles->importance }}</td>					
-					<td>{{ $profiles->created_at }}</td>					
-					<td class="text-success text-center font-weight-bold">
-						<a href="{{ route('jobProfiles.edit', $profiles->id)}}">
-							<button class="bg-success text-white pointer" style="border-radius: 100%; border:0; cursor: pointer;">O</button>
+		@foreach ($profiles as $profiles)
+			<div class="col-md-4 col-sm-12 p-2" >
+            	<div class="col-12 border border-info px-5 py-3" style="height: 100%;">
+            		<div class="col-12 h4 mt-3 p-0" id="{{ $profiles->id }}">{{ $profiles->name }}</div>
+            		<div class="col-12 p-0">{{ $profiles->importance }}</div>
+
+    				<table class="col-12 p-0 mt-3">            						
+						<thead>
+							<tr>
+								<th>Skills</th>
+								<th>min-lvl</th>
+								<th>max-lvl</th>
+							</tr>
+						</thead>
+						<tbody>
+						@foreach($profiles->profileToSkills()->get() as $skill)        					
+							<tr>
+								<td>{{ $skill->name }}</td>
+								<td>{{ $skill->pivot->min_level }}</td>
+								<td>{{ $skill->pivot->max_level }}</td>								
+							</tr>
+						@endforeach	
+						</tbody>
+					</table>
+            		
+					<div class="col-12 p-0 my-3">
+						<a href="{{ route('jobProfiles.show', $profiles->id) }}">
+							<button class="btn btn-index pointer">show</button>
 						</a>
-					</td>
-					<td class="text-danger text-center font-weight-bold">
-						<form method="POST" action="{{ route('jobProfiles.destroy', $profiles->id) }}">
-						@csrf
-						{{ method_field('DELETE') }}
+	            		<a href="{{ route('jobProfiles.edit', $profiles->id)}}">
+							<button class="btn btn-primary text-white pointer">edit</button>
+						</a>
+						<form class="d-inline" method="POST" action="{{ route('jobProfiles.destroy', $profiles->id) }}">
+							@csrf
+							{{ method_field('DELETE') }}
 						    
-						<button type="submit" value="delete" class="bg-danger text-white pointer" onclick="return confirm('Do you really want to delete this profile?')" style="border-radius: 100%; border:0; cursor: pointer;">X</button>
+							<button type="submit" value="delete" class="btn btn-secondary text-white pointer d-inline" onclick="return confirm('Do you really want to delete this profile?')">delete</button>
 						</form>
-					</td>
-				</tr>
-			@endforeach
-		</tbody>
-		</table>
+					</div>
+            	</div>            	
+            </div>
+		@endforeach
 	</div>
 </div>
 
