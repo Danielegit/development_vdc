@@ -79,6 +79,16 @@ class User extends Authenticatable
          );
     }
 
+    public function clientToCourse() 
+    {
+        return $this->belongsToMany(
+            'App\Course', 
+            'clients_to_courses', 
+            'FK_client', 
+            'FK_course')
+        ->withPivot('client_status');
+    }
+
     public function comment()
     {
         return $this->hasMany('App\Comment', 'FK_subject');
