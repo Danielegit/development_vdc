@@ -1,0 +1,20 @@
+web.php
+--------
+
+/*Routes for profilesToSkill*/
+Route::get('pts_attach/{id}', 'JobProfilesToSkillController@display')
+        ->name('pts_attach');
+Route::post('profilesToSkill', 'JobProfilesToSkillController@attach')
+        ->name('JobProfilesToSkill.attach');
+Route::get('pts_confirm', 'JobProfilesToSkillController@detach')
+        ->name('JobProfilesToSkill.detach');
+Route::post('pts_update', 'JobProfilesToSkillController@update')
+        ->name('JobProfilesToSkill.update');
+/*end*/
+
+
+views/admin/index.blade
+-------------------------
+<a href="{{ route('jobProfiles.index')}}" >
+   <button class="btn-custom btn-custom-blue">Job Profiles</button>
+</a>
